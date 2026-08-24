@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\SentEmailController;
 use App\Http\Controllers\Api\SuspectController;
 use App\Http\Controllers\Api\TestController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,9 @@ use App\Http\Controllers\Api\UserController;
 | All routes are prefixed with /api.
 |
 */
+
+Route::post('/auth/login', [AuthController::class, 'login']);
+Route::post('/auth/register', [AuthController::class, 'register']);
 
 Route::apiResource('ai-usage-credits', AiUsageCreditController::class);
 Route::apiResource('campaigns', CampaignController::class);
