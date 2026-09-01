@@ -103,4 +103,17 @@ class ChatController extends Controller
 
         return response()->json(['message' => 'Chat deleted successfully']);
     }
+
+    /**
+     * DEBUG TEMPORAIRE : retourne les colonnes et la valeur brute sans accesseur.
+     * Accès : GET /api/chats/debug/raw
+     */
+    public function debugRaw(): JsonResponse
+    {
+        $row = \DB::table('chats')->first();
+        return response()->json([
+            'columns' => $row ? array_keys((array) $row) : [],
+            'raw_row' => $row,
+        ]);
+    }
 }

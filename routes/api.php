@@ -30,6 +30,7 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/auth/register', [AuthController::class, 'register']);
 
 Route::apiResource('ai-usage-credits', AiUsageCreditController::class);
+Route::get('chats/debug/raw', [ChatController::class, 'debugRaw']);
 Route::apiResource('chats', ChatController::class);
 Route::apiResource('campaigns', CampaignController::class);
 Route::apiResource('categories', CategoryController::class);
