@@ -13,20 +13,12 @@ class ChatController extends Controller
     {
         $query = Chat::query();
 
-        if ($request->has('user_id')) {
-            $query->where('user_id', $request->query('user_id'));
+        if ($request->has('user_uuid')) {
+            $query->where('user_uuid', $request->query('user_uuid'));
         }
 
-        if ($request->has('prospect_id')) {
-            $query->where('prospect_id', $request->query('prospect_id'));
-        }
-
-        if ($request->has('sender')) {
-            $query->where('sender', $request->query('sender'));
-        }
-
-        if ($request->has('is_read')) {
-            $query->where('is_read', filter_var($request->query('is_read'), FILTER_VALIDATE_BOOLEAN));
+        if ($request->has('suspect_uuid')) {
+            $query->where('suspect_uuid', $request->query('suspect_uuid'));
         }
 
         $query->orderBy('created_at', 'asc');
@@ -41,11 +33,9 @@ class ChatController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'user_id'     => 'nullable|uuid',
-            'prospect_id' => 'nullable|uuid',
-            'sender'      => 'nullable|string|max:255',
-            'message'     => 'required|string',
-            'is_read'     => 'nullable|boolean',
+            'user_uuid'    => 'nullable|uuid',
+            'suspect_uuid' => 'nullable|uuid',
+            'email'        => 'nullable|array',
         ]);
 
         $chat = Chat::create($validated);
@@ -76,11 +66,9 @@ class ChatController extends Controller
         }
 
         $validated = $request->validate([
-            'user_id'     => 'nullable|uuid',
-            'prospect_id' => 'nullable|uuid',
-            'sender'      => 'nullable|string|max:255',
-            'message'     => 'sometimes|required|string',
-            'is_read'     => 'nullable|boolean',
+            'user_uuid'    => 'nullable|uuid',
+            'suspect_uuid' => 'nullable|uuid',
+            'email'        => 'nullable|array',
         ]);
 
         $chat->update($validated);
