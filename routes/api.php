@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\SuspectController;
 use App\Http\Controllers\Api\TestController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/auth/register', [AuthController::class, 'register']);
 
 Route::apiResource('ai-usage-credits', AiUsageCreditController::class);
+Route::apiResource('chats', ChatController::class);
 Route::apiResource('campaigns', CampaignController::class);
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('cold-email-models', ColdEmailModelController::class);
