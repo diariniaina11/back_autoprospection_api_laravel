@@ -21,6 +21,10 @@ class ChatController extends Controller
             $query->where('suspect_uuid', $request->query('suspect_uuid'));
         }
 
+        if ($request->has('status')) {
+            $query->where('status', $request->query('status'));
+        }
+
         $query->orderBy('created_at', 'asc');
 
         if ($request->boolean('paginate')) {
@@ -36,6 +40,7 @@ class ChatController extends Controller
             'user_uuid'    => 'nullable|uuid',
             'suspect_uuid' => 'nullable|uuid',
             'email'        => 'nullable|array',
+            'status'       => 'nullable|string',
         ]);
 
         $chat = Chat::create($validated);
@@ -69,6 +74,7 @@ class ChatController extends Controller
             'user_uuid'    => 'nullable|uuid',
             'suspect_uuid' => 'nullable|uuid',
             'email'        => 'nullable|array',
+            'status'       => 'nullable|string',
         ]);
 
         $chat->update($validated);
