@@ -17,6 +17,7 @@ class Chat extends Model
         'user_uuid',
         'suspect_uuid',
         'email',
+        'status',
     ];
 
     protected $casts = [
